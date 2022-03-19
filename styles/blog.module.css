@@ -16,3 +16,7 @@
 .blogItems h3 {
   cursor: pointer;
 }
+
+.blogItems p {
+  width: 45vw;
+}
