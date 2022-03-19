@@ -10,6 +10,7 @@ const blog = () => {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
     // console.log("UseEffect is running");
+    // fetching the data and parsing into a json format
     fetch("http://localhost:3000/api/blogs")
       .then((a) => {
         return a.json();
