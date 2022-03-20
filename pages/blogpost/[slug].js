@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/blogpost.module.css";
 import { ColoredLine } from "../../components/hr";
@@ -7,21 +7,30 @@ import { ColoredLine } from "../../components/hr";
 //step 2: populate them inside the page
 
 const Slug = () => {
+  // console.log(router.query);
+  const [blog, setBlog] = useState();
   const router = useRouter();
-  const { slug } = router.query;
-  console.log(router.query);
+
+  useEffect(() => {
+    // Runs the code until the router is ready
+    if (!router.isReady) return;
+    const { slug } = router.query;
+    // console.log("UseEffect is running");
+    // fetching the data and parsing into a json format
+    fetch(`http://localhost:3000/api/getblogs?slug=${slug}`)
+      .then((a) => {
+        return a.json();
+      })
+      .then((parsed) => {
+        setBlog(parsed);
+      });
+  }, [router.isReady]);
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <h1>Title of the page {slug}</h1>
+        <h1>{blog && blog.Title}</h1>
         <ColoredLine color="black" />
-        <div>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque aut
-          non, quo vero distinctio sit, accusamus saepe autem dolorem laudantium
-          consectetur itaque deserunt omnis, cum modi architecto dicta
-          voluptatum inventore. Culpa rem soluta quod commodi similique mollitia
-          veniam maxime nostrum assumenda dolore labore
-        </div>
+        <div>{blog && blog.content}</div>
 
         <hr />
       </main>

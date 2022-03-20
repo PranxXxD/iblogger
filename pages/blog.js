@@ -30,7 +30,7 @@ const blog = () => {
             return (
               <div className={styles.blogItems} key={blogitem.slug}>
                 <Link href={`/blogpost/${blogitem.slug}`}>
-                  <h3>{blogitem.Name}</h3>
+                  <h3>{blogitem.Title}</h3>
                 </Link>
                 <p>{blogitem.content.substr(0, 130)}.....</p>
               </div>
