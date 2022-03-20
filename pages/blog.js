@@ -6,19 +6,20 @@ import { ColoredLine } from "../components/hr";
 //step 1: collect all files from the blogdata directory
 //step 2 : Iterate through them and display them
 
-const blog = () => {
-  const [blogs, setBlogs] = useState([]);
-  useEffect(() => {
-    // console.log("UseEffect is running");
-    // fetching the data and parsing into a json format
-    fetch("http://localhost:3000/api/blogs")
-      .then((a) => {
-        return a.json();
-      })
-      .then((parsed) => {
-        setBlogs(parsed);
-      });
-  }, []);
+const blog = (props) => {
+  const [blogs, setBlogs] = useState(props.allblogs);
+  // console.log(props);
+  // useEffect(() => {
+  //   // console.log("UseEffect is running");
+  //   // fetching the data and parsing into a json format
+  //   fetch("http://localhost:3000/api/blogs")
+  //     .then((a) => {
+  //       return a.json();
+  //     })
+  //     .then((parsed) => {
+  //       setBlogs(parsed);
+  //     });
+  // }, []);
 
   return (
     <div className={styles.container}>
@@ -36,25 +37,19 @@ const blog = () => {
               </div>
             );
           })}
-
-          {/* <div className={styles.blogItems}>
-            <h3>Apple new release</h3>
-            <p>The new release of apple SE 2022 Edition</p>
-          </div>
-
-          <div className={styles.blogItems}>
-            <h3>Apple new release</h3>
-            <p>The new release of apple SE 2022 Edition</p>
-          </div>
-
-          <div className={styles.blogItems}>
-            <h3>Apple new release</h3>
-            <p>The new release of apple SE 2022 Edition</p>
-          </div> */}
         </div>
       </main>
     </div>
   );
 };
+// Method for the Server side Rendereing
+export async function getServerSideProps(context) {
+  // console.log(context);
+  let data = await fetch("http://localhost:3000/api/blogs");
+  let allblogs = await data.json(); //convert the data into a json format
+  return {
+    props: { allblogs }, // will be passed to the page component as props
+  };
+}
 
 export default blog;
