@@ -20,3 +20,8 @@
 .blogItems p {
   width: 45vw;
 }
+
+.blog h2 {
+  justify-content: center;
+  margin-left: 35%;
+}

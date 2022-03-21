@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Image from "next/image";
+// import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -21,11 +21,18 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>Welcome to iBlogging</h1>
         <div className={styles.imageWrap}>
-          <Image
+          {/* <Image
             className={styles.homeImg}
             src="/homeimg.png"
             width={300}
             height={200}
+          /> */}
+          <img
+            src="/homeimg.png"
+            className={styles.homeImg}
+            width={300}
+            height={200}
+            alt="iBlogger"
           />
         </div>
         <p className={styles.description}>One place for every iBlogger</p>
@@ -92,7 +99,8 @@ export default function Home() {
         >
           Powered by{" "}
           <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+            {/* <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} /> */}
+            <img src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>

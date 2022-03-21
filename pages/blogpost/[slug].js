@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/blogpost.module.css";
 import { ColoredLine } from "../../components/hr";
+import * as fs from "fs";
 
 //step 1 : Find the file corresponding to the slug
 //step 2: populate them inside the page
@@ -38,13 +39,39 @@ const Slug = (props) => {
   );
 };
 // Method for the Server side Rendereing
-export async function getServerSideProps(context) {
-  // console.log(context.query);
-  const { slug } = context.query; //context.query is an object of the query string passed in the page's URL
-  let data = await fetch(`http://localhost:3000/api/getblogs?slug=${slug}`);
-  let myBlog = await data.json(); //covert the data into a json format
+// export async function getServerSideProps(context) {
+//   // console.log(context.query);
+//   const { slug } = context.query; //context.query is an object of the query string passed in the page's URL
+//   // let data = await fetch(`http://localhost:3000/api/getblogs?slug=${slug}`);
+//   // let myBlog = await data.json(); //covert the data into a json format
+//   return {
+//     props: { myBlog }, // will be passed to the page component as props
+//   };
+// }
+
+// Method for the Static side Rendering
+
+export async function getStaticPaths() {
   return {
-    props: { myBlog }, // will be passed to the page component as props
+    paths: [
+      // render the data from the given path
+      { params: { slug: "newrelease-apple-12-pro" } },
+      { params: { slug: "newrelease-apple-13-mini" } },
+      { params: { slug: "newrelease-apple-13pro-apline-green" } },
+      { params: { slug: "newrelease-apple-SE-2022" } },
+      { params: { slug: "newrelease-apple-watch7" } },
+    ],
+    fallback: true, // false or 'blocking'
+  };
+}
+// sends props to the server to fetch the whole data
+export async function getStaticProps(context) {
+  // console.log(context);
+  const { slug } = context.params;
+
+  let myBlog = await fs.promises.readFile(`blogdata/${slug}.json`, "utf-8");
+  return {
+    props: { myBlog: JSON.parse(myBlog) }, // will be passed to the page component as props
   };
 }
 
