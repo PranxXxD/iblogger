@@ -11,6 +11,10 @@ const Slug = (props) => {
   // console.log(router.query);
   const [blog, setBlog] = useState(props.myBlog);
 
+  //display the markup code in text fromat
+  function createMarkup(c) {
+    return { __html: c };
+  }
   // useEffect(() => {
   //   // Runs the code until the router is ready
   //   if (!router.isReady) return;
@@ -31,8 +35,12 @@ const Slug = (props) => {
       <main className={styles.main}>
         <h1>{blog && blog.Title}</h1>
         <ColoredLine color="black" />
-        <div>{blog && blog.content}</div>
+        {/* <div>{blog && blog.content}</div> */}
 
+        {/* to display html in webpage */}
+        {blog && (
+          <div dangerouslySetInnerHTML={createMarkup(blog.content)}></div>
+        )}
         <hr />
       </main>
     </div>
