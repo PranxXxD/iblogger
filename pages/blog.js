@@ -31,10 +31,12 @@ const blog = (props) => {
           {blogs.map((blogitem) => {
             return (
               <div className={styles.blogItems} key={blogitem.slug}>
-                <Link href={`/blogpost/${blogitem.slug}`}>
-                  <h3>{blogitem.Title}</h3>
-                </Link>
-                <p>{blogitem.metadesc.substr(0, 130)}.....</p>
+                <div className={styles.card}>
+                  <Link href={`/blogpost/${blogitem.slug}`}>
+                    <h3>{blogitem.Title} &rarr;</h3>
+                  </Link>
+                  <p>{blogitem.metadesc.substr(0, 130)}.....</p>
+                </div>
               </div>
             );
           })}

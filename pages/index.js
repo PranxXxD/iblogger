@@ -19,7 +19,7 @@ export default function Home() {
       </style>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Welcome to iBlogging</h1>
+        <h1 className={styles.title}>&lt;Welcome to iBlogging/&gt;</h1>
         <div className={styles.imageWrap}>
           {/* <Image
             className={styles.homeImg}
@@ -37,7 +37,7 @@ export default function Home() {
         </div>
         <p className={styles.description}>One place for every iBlogger</p>
 
-        <div className={styles.blog}>
+        {/* <div className={styles.blog}>
           <h2>Mostly Viewed Blogs</h2>
           <div className={styles.blogs}>
             <h3>Apple new release</h3>
@@ -58,45 +58,35 @@ export default function Home() {
             <h3>Apple new release</h3>
             <p>The new release of apple SE 2022 Edition</p>
           </div>
-        </div>
+        </div> */}
 
-        {/* <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
+        <div className={styles.grid}>
+          <a className={styles.card}>
+            <h2>Apple new release &rarr;</h2>
+            <p>The new release of apple SE 2022 Edition...</p>
           </a>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
+          <a className={styles.card}>
+            <h2>Apple iPhone 13 mini &rarr;</h2>
+            <p>A dramatically more powerful camera system...</p>
           </a>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
+          <a className={styles.card}>
+            <h2>Apple iPhone 13 Pro &rarr;</h2>
+            <p>A dramatically more powerful camera system...</p>
           </a>
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
+          <a className={styles.card}>
+            <h2>Apple Watch 7 &rarr;</h2>
             <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
+              Apple Watch Series 7, Apple Watch SE and Apple Watch Series...
             </p>
           </a>
-        </div> */}
+        </div>
       </main>
 
       <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a target="_blank" rel="noopener noreferrer">
           Powered by{" "}
           <span className={styles.logo}>
             {/* <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} /> */}

@@ -3,10 +3,32 @@
   margin: auto;
 }
 
+.container h1 {
+  text-align: center;
+}
+
 .mb3 {
   margin-bottom: 17px;
+  display: flex;
+  flex-direction: column;
 }
 
 .formlabel {
-  margin: 0px 14px;
+  margin: 2px 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  color: whitesmoke;
+  background: #000;
+  border: 2px solid grey;
+  border-radius: 5px;
+  height: max-content;
+  width: max-content;
+}
+
+.formtext {
+  font-size: 11px;
+  padding: 6px 4px;
 }

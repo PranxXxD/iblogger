@@ -43,7 +43,7 @@
 .title {
   margin: 0;
   line-height: 1;
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
 .title,
@@ -52,9 +52,9 @@
 }
 
 .description {
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   line-height: 1.5;
-  font-size: 1.4rem;
+  font-size: 1rem;
 }
 
 .code {
@@ -89,8 +89,8 @@
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+  color: #585d64;
+  border-color: #383d44;
 }
 
 .card h2 {

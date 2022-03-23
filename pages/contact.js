@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ColoredLine } from "../components/hr";
 import styles from "../styles/contact.module.css";
 
 const contact = () => {
@@ -52,6 +53,7 @@ const contact = () => {
   return (
     <div className={styles.container}>
       <h1>Contact US</h1>
+      <ColoredLine color="grey" />
       <form onSubmit={handleSubmit}>
         <div className={styles.mb3}>
           <label htmlFor="name" className={styles.formlabel}>
@@ -59,7 +61,7 @@ const contact = () => {
           </label>
           <input
             type="name"
-            className="form-control"
+            className={styles.input}
             id="name"
             name="name"
             value={name}
@@ -73,14 +75,15 @@ const contact = () => {
           </label>
           <input
             type="email"
-            className="form-control"
+            className={styles.input}
             id="email"
             aria-describedby="emailHelp"
             name="email"
             value={email}
             onChange={handleChange}
+            required
           />
-          <div id="emailHelp" className="form-text">
+          <div id="emailHelp" className={styles.formtext}>
             We'll never share your email with anyone else.
           </div>
         </div>
@@ -90,17 +93,19 @@ const contact = () => {
           </label>
           <input
             type="phone"
-            className="form-control"
+            className={styles.input}
             id="phone"
             name="phone"
             value={phone}
             onChange={handleChange}
           />
         </div>
-        <div className="form-floating">
-          <label htmlFor="desc">Comments</label>
+        <div className={styles.mb3}>
+          <label htmlFor="desc" className={styles.formlabel}>
+            Comments
+          </label>
           <textarea
-            className="form-control"
+            className={styles.input}
             placeholder="Leave a comment here"
             id="desc"
             name="desc"
@@ -108,7 +113,7 @@ const contact = () => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className={styles.btn}>
           Submit
         </button>
       </form>
