@@ -7,7 +7,7 @@ export const ColoredLine = ({ color }) => {
         color: color,
         backgroundColor: color,
         height: 2,
-        width: 810,
+        width: 805,
         marginBottom: 10,
       }}
     />
