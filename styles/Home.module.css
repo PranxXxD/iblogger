@@ -133,3 +133,13 @@
 .homeImg {
   border-radius: 10px;
 }
+
+@media only screen and (max-width: 600px) {
+  .navbar ul li {
+    margin: 0px 11px;
+  }
+
+  .container {
+    padding: 0 2rem;
+  }
+}
