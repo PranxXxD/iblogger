@@ -60,15 +60,23 @@ const Slug = (props) => {
 // Method for the Static side Rendering
 
 export async function getStaticPaths() {
+  // Dynamically fetcing data from the blogdata
+  let allblg = await fs.promises.readdir(`blogdata`);
+  allblg = allblg.map((item) => {
+    // console.log(item);
+    return { params: { slug: item.split(".")[0] } };
+  });
   return {
-    paths: [
-      // render the data from the given path
-      { params: { slug: "newrelease-apple-12-pro" } },
-      { params: { slug: "newrelease-apple-13-mini" } },
-      { params: { slug: "newrelease-apple-13pro-apline-green" } },
-      { params: { slug: "newrelease-apple-SE-2022" } },
-      { params: { slug: "newrelease-apple-watch7" } },
-    ],
+    // paths: [
+    //   // render the data from the given path
+    //   { params: { slug: "newrelease-apple-12-pro" } },
+    //   { params: { slug: "newrelease-apple-13-mini" } },
+    //   { params: { slug: "newrelease-apple-13pro-apline-green" } },
+    //   { params: { slug: "newrelease-apple-SE-2022" } },
+    //   { params: { slug: "newrelease-apple-watch7" } },
+    // ],
+
+    paths: allblg,
     fallback: true, // false or 'blocking'
   };
 }
