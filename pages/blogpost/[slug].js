@@ -8,7 +8,7 @@ import * as fs from "fs";
 //step 2: populate them inside the page
 
 const Slug = (props) => {
-  // console.log(router.query);
+  console.log(router.query);
   const [blog, setBlog] = useState(props.myBlog);
 
   //display the markup code in text fromat

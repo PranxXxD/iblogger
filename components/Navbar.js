@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/Link";
 import styles from "../styles/Home.module.css";
+import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
 
 const Navbar = () => {
   return (
@@ -26,6 +27,9 @@ const Navbar = () => {
             <li>Blog</li>
           </a>
         </Link>
+        <button>
+          <AccountCircleOutlinedIcon />
+        </button>
       </ul>
     </nav>
   );
