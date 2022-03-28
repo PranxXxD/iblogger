@@ -12,7 +12,7 @@ contactdata/
 # next.js
 /.next/
 /out/
-
+/yarn.lock
 # production
 /build
 

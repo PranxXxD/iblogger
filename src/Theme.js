@@ -1,5 +1,5 @@
-import { createTheme } from "@mui/material/styles";
-import { red } from "@mui/material/colors";
+import { createTheme } from "material-ui/styles";
+import { red } from "material-ui/colors";
 
 // Create a theme instance.
 const theme = createTheme({
