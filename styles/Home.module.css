@@ -143,3 +143,53 @@
     padding: 0 2rem;
   }
 }
+
+.ul li {
+  cursor: pointer;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropbtn {
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+}
+
+.dropdown .dropbtn {
+  font-size: 1.5rem;
+  border: none;
+  outline: none;
+  justify-content: center;
+  align-items: center;
+  color: rgb(31, 30, 30);
+  background-color: inherit;
+  /* font-family: inherit; Important for vertical align on mobile phones */
+  margin: auto; /* Important for vertical align on mobile phones */
+}
+
+.dropdowncontent {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 150px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 10px;
+}
+
+.droplink a {
+  text-decoration: none;
+}
+/* Add a grey background color to dropdown links on hover */
+/* .dropdowncontent a:hover {
+  background-color: rgb(170, 165, 165);
+} */
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdowncontent {
+  display: block;
+}

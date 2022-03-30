@@ -1,10 +1,14 @@
 import React from "react";
-import styles from "../styles/contact.module.css";
+import styles from "../styles/userlogin.module.css";
+import { ColoredLine } from "../components/hr";
 
 const userlogin = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div>
-      {" "}
       <div className={styles.container}>
         <h1>Login To View blog</h1>
         <ColoredLine color="grey" />
@@ -19,8 +23,6 @@ const userlogin = () => {
               id="email"
               aria-describedby="emailHelp"
               name="email"
-              value={email}
-              onChange={handleChange}
               required
             />
           </div>
@@ -33,8 +35,6 @@ const userlogin = () => {
               className={styles.input}
               id="password"
               name="password"
-              value={password}
-              onChange={handleChange}
             />
           </div>
 

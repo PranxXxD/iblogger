@@ -1,35 +1,42 @@
 import React from "react";
 import Link from "next/Link";
 import styles from "../styles/Home.module.css";
-import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
+import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+import MuiButton from "@mui/material/Button";
 
 const Navbar = () => {
   return (
     <nav className={styles.navbar}>
-      <ul>
+      <ul className={styles.ul}>
         <Link href="/">
-          <a>
-            <li>Home</li>
-          </a>
+          <li>Home</li>
         </Link>
         <Link href="/about">
-          <a>
-            <li>About</li>
-          </a>
+          <li>About</li>
         </Link>
         <Link href="/contact">
-          <a>
-            <li>Contact</li>
-          </a>
+          <li>Contact</li>
         </Link>
         <Link href="/blog">
-          <a>
-            <li>Blog</li>
-          </a>
+          <li>Blog</li>
         </Link>
-        <button>
-          <AccountCircleOutlinedIcon />
-        </button>
+        <div className={styles.dropdown}>
+          <MuiButton>
+            <AccountCircleRoundedIcon
+              // style={{ color: "black" }}
+              href="/userlogin"
+              className={styles.dropbtn}
+            />
+          </MuiButton>
+          <div class={styles.dropdowncontent}>
+            <li className={styles.droplink}>
+              <a href="/userlogin">Login</a>
+            </li>
+            <li className={styles.droplink}>
+              <a href="/SignIn">Signup</a>
+            </li>
+          </div>
+        </div>
       </ul>
     </nav>
   );
