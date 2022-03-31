@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/Link";
 import styles from "../styles/Home.module.css";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
-import MuiButton from "@mui/material/Button";
+import Button from "@material-ui/core/Button";
 
 const Navbar = () => {
   return (
@@ -21,19 +21,19 @@ const Navbar = () => {
           <li>Blog</li>
         </Link>
         <div className={styles.dropdown}>
-          <MuiButton>
+          <Button className={styles.profilebtn}>
             <AccountCircleRoundedIcon
               // style={{ color: "black" }}
               href="/userlogin"
               className={styles.dropbtn}
             />
-          </MuiButton>
-          <div class={styles.dropdowncontent}>
+          </Button>
+          <div className={styles.dropdowncontent}>
             <li className={styles.droplink}>
               <a href="/userlogin">Login</a>
             </li>
             <li className={styles.droplink}>
-              <a href="/SignIn">Signup</a>
+              <a href="/signup">Signup</a>
             </li>
           </div>
         </div>

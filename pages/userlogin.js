@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../styles/userlogin.module.css";
 import { ColoredLine } from "../components/hr";
+import Button from "@material-ui/core/Button";
 
 const userlogin = () => {
   const handleSubmit = (e) => {
@@ -38,9 +39,16 @@ const userlogin = () => {
             />
           </div>
 
-          <button type="submit" className={styles.btn}>
+          {/* <button type="submit" className={styles.btn}>
             Submit
-          </button>
+          </button> */}
+          <Button
+            className={styles.loginbutton}
+            color="secondary"
+            variant="contained"
+          >
+            Login
+          </Button>
         </form>
       </div>
     </div>
