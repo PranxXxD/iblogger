@@ -29,9 +29,9 @@ const Navbar = () => {
             />
           </Button>
           <div className={styles.dropdowncontent}>
-            <li className={styles.droplink}>
+            {/* <li className={styles.droplink}>
               <a href="/userlogin">Login</a>
-            </li>
+            </li> */}
             <li className={styles.droplink}>
               <a href="/signup">Signup</a>
             </li>

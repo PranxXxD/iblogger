@@ -1,126 +1,96 @@
-import React from "react";
-import { ColoredLine } from "../components/hr";
+import React, { useRef } from "react";
 import styles from "../styles/signup.module.css";
 import Button from "@material-ui/core/Button";
-import { firestore } from "../firebase/clientApp";
-import { useState } from "react";
-import { doc } from "@firebase/firestore"; // for creating a pointer to our Document
-import { setDoc } from "firebase/firestore"; // for adding the Document to Collection
-import { async } from "@firebase/util";
+import { auth, firestore } from "../firebase/clientApp";
+import { grey } from "@material-ui/core/colors";
+// import { useForm } from "react-hook-form";
+import firebase from "firebase/compat/app";
 
 const signup = () => {
-  const [email, setEmail] = useState();
-  const [phone, setPhone] = useState();
-  const [password, setPassword] = useState();
-  const [cpassword, setCpassword] = useState();
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
 
-  const handleSubmit = () => {
+  const register = (e) => {
     e.preventDefault(); // avoid default behaviour
 
-    if (!email || !phone || !password) {
-      // check for any null value
-      alert("All fields are required");
-    }
-
-    const addUser = async () => {
-      exports.getTimeStamp = functions.https.onRequest((req, res) => {
-        res.setHeader("Content-Type", "application/json");
-        res.send(JSON.stringify({ timestamp: Date.now() }));
+    // for creating the new user in database
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(
+        emailRef.current.value,
+        passwordRef.current.value
+      )
+      .then((authUser) => {
+        console.log(authUser);
+      })
+      .catch((error) => {
+        alert(error.message);
       });
-      const _users = doc(firestore, `users/${Timestamp}`);
+  };
 
-      const users = {
-        email,
-        phone,
-        password,
-      };
-      try {
-        await setDoc(_users, users);
-        alert("Your account as been created successfully ");
-        setTitle("");
-        setDescription("");
-      } catch (error) {
-        //show an error message
-        alert("An error occured while creating an account");
-      }
-    };
+  //get the data of a existing user from database
+  const SignIn = (e) => {
+    e.preventDefault(); // avoid default behaviour
+
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(
+        emailRef.current.value,
+        passwordRef.current.value
+      )
+      .then((authUser) => {
+        console.log(authUser);
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   };
 
   return (
     <div>
-      <div className={styles.container}>
-        <h1>Sign Up Now</h1>
-        <ColoredLine color="grey" />
-        <form onSubmit={handleSubmit}>
-          <div className={styles.mb3}>
-            <label htmlFor="exampleInputEmail1" className={styles.formlabel}>
-              Email address
-            </label>
-            <input
-              type="email"
-              className={styles.input}
-              id="email"
-              aria-describedby="emailHelp"
-              name="email"
-              value={email}
-              required
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className={styles.mb3}>
-            <label htmlFor="phone" className={styles.formlabel}>
-              Phone
-            </label>
-            <input
-              type="phone"
-              className={styles.input}
-              id="phone"
-              name="phone"
-              value={phone}
-              // onChange={handleChange}
-              onChange={(e) => setPhone(e.target.value)}
-            />
-          </div>
-          <div className={styles.mb3}>
-            <label htmlFor="password" className={styles.formlabel}>
-              Password
-            </label>
-            <input
-              type="password"
-              className={styles.input}
-              id="password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div className={styles.mb3}>
-            <label htmlFor="cpassword" className={styles.formlabel}>
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              className={styles.input}
-              id="cpassword"
-              name="cpassword"
-              value={cpassword}
-              onChange={(e) => setCpassword(e.target.value)}
-            />
-          </div>
-          {/* 
-          <button type="submit" className={styles.btn}>
-            Submit
-          </button> */}
-          <Button
-            className={styles.signupbutton}
-            color="secondary"
-            variant="contained"
-            type="submit"
-          >
-            SignUp
-          </Button>
-        </form>
-      </div>
+      <form className={styles.container}>
+        <h1>Sign In</h1>
+        <hr
+          style={{
+            color: grey,
+            backgroundColor: grey,
+            height: 2,
+            width: 462,
+            marginBottom: 10,
+          }}
+        />
+        <div className={styles.mb3}>
+          <input
+            ref={emailRef}
+            className={styles.input}
+            type="email"
+            placeholder="Email"
+          />
+        </div>
+        <div className={styles.mb3}>
+          <input
+            ref={passwordRef}
+            className={styles.input}
+            type="password"
+            placeholder="Password"
+          />
+        </div>
+        <Button
+          className={styles.signupbutton}
+          color="secondary"
+          variant="contained"
+          type="submit"
+          onClick={SignIn}
+        >
+          SignIn
+        </Button>
+        <h4>
+          <span className={styles.signupScreen__gray}>New to iBlogger?</span>
+          <span className={styles.signupScreen__link} onClick={register}>
+            Sign up now.
+          </span>
+        </h4>
+      </form>
     </div>
   );
 };

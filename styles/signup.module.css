@@ -1,5 +1,5 @@
 .container {
-  width: 45vw;
+  width: 30vw;
   margin: auto;
   height: 100vh;
 }
@@ -43,4 +43,13 @@
 
 .signupbutton {
   width: 100%;
+}
+
+.signupScreen__gray {
+  color: gray;
+}
+
+.signupScreen__link:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
