@@ -1,10 +1,9 @@
 import React, { useRef } from "react";
 import styles from "../styles/signup.module.css";
 import Button from "@material-ui/core/Button";
-import { auth, firestore } from "../firebase/clientApp";
 import { grey } from "@material-ui/core/colors";
 // import { useForm } from "react-hook-form";
-import firebase from "firebase/compat/app";
+import { auth } from "../firebase/clientApp";
 
 const signup = () => {
   const emailRef = useRef(null);
@@ -14,14 +13,14 @@ const signup = () => {
     e.preventDefault(); // avoid default behaviour
 
     // for creating the new user in database
-    firebase
-      .auth()
+    auth
       .createUserWithEmailAndPassword(
         emailRef.current.value,
         passwordRef.current.value
       )
       .then((authUser) => {
         console.log(authUser);
+        // router.push(./userlogin)
       })
       .catch((error) => {
         alert(error.message);
@@ -29,17 +28,17 @@ const signup = () => {
   };
 
   //get the data of a existing user from database
-  const SignIn = (e) => {
+  const signIn = (e) => {
     e.preventDefault(); // avoid default behaviour
 
-    firebase
-      .auth()
+    auth
       .signInWithEmailAndPassword(
         emailRef.current.value,
         passwordRef.current.value
       )
       .then((authUser) => {
         console.log(authUser);
+        // router.push(./userlogin)
       })
       .catch((error) => {
         alert(error.message);
@@ -80,7 +79,7 @@ const signup = () => {
           color="secondary"
           variant="contained"
           type="submit"
-          onClick={SignIn}
+          onClick={signIn}
         >
           SignIn
         </Button>
