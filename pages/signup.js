@@ -1,95 +1,50 @@
-import React, { useRef } from "react";
+//next js related
+import React from "react";
+import { useRouter } from "next/router";
+// firebase related
+import { useAuthState } from "react-firebase-hooks/auth";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import { auth, firebase } from "../Firebase/clientApp";
+import { uiConfig } from "../config/firebaseAuthUIConfig";
+
+//components
+import Error from "../components/Error";
+import Loading from "../components/Loading";
+import Card from "../components/Card";
+
 import styles from "../styles/signup.module.css";
-import Button from "@material-ui/core/Button";
 import { grey } from "@material-ui/core/colors";
-// import { useForm } from "react-hook-form";
-import { auth } from "../firebase/clientApp";
 
 const signup = () => {
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
+  const [user, loading, error] = useAuthState(auth);
+  const router = useRouter();
 
-  const register = (e) => {
-    e.preventDefault(); // avoid default behaviour
+  if (loading) return <Loading />;
+  else if (error) return <Error msg={error} />;
+  else if (user) {
+    // user is already logged in, redirect to home page
+    router.push("/");
+  }
 
-    // for creating the new user in database
-    auth
-      .createUserWithEmailAndPassword(
-        emailRef.current.value,
-        passwordRef.current.value
-      )
-      .then((authUser) => {
-        console.log(authUser);
-        // router.push(./userlogin)
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
-  };
-
-  //get the data of a existing user from database
-  const signIn = (e) => {
-    e.preventDefault(); // avoid default behaviour
-
-    auth
-      .signInWithEmailAndPassword(
-        emailRef.current.value,
-        passwordRef.current.value
-      )
-      .then((authUser) => {
-        console.log(authUser);
-        // router.push(./userlogin)
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
-  };
+  const authConfig = uiConfig(firebase);
 
   return (
     <div>
-      <form className={styles.container}>
-        <h1>Sign In</h1>
-        <hr
-          style={{
-            color: grey,
-            backgroundColor: grey,
-            height: 2,
-            width: 462,
-            marginBottom: 10,
-          }}
-        />
-        <div className={styles.mb3}>
-          <input
-            ref={emailRef}
-            className={styles.input}
-            type="email"
-            placeholder="Email"
+      <div className={styles.container}>
+        <Card>
+          <h1>Sign In</h1>
+          <hr
+            style={{
+              color: grey,
+              backgroundColor: grey,
+              height: 2,
+              width: 462,
+              marginBottom: 10,
+            }}
           />
-        </div>
-        <div className={styles.mb3}>
-          <input
-            ref={passwordRef}
-            className={styles.input}
-            type="password"
-            placeholder="Password"
-          />
-        </div>
-        <Button
-          className={styles.signupbutton}
-          color="secondary"
-          variant="contained"
-          type="submit"
-          onClick={signIn}
-        >
-          SignIn
-        </Button>
-        <h4>
-          <span className={styles.signupScreen__gray}>New to iBlogger?</span>
-          <span className={styles.signupScreen__link} onClick={register}>
-            Sign up now.
-          </span>
-        </h4>
-      </form>
+          <StyledFirebaseAuth uiConfig={authConfig} firebaseAuth={auth} />
+        </Card>
+      </div>
     </div>
   );
 };

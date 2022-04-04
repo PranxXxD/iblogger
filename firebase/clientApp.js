@@ -1,47 +1,23 @@
-// // Start by importing initializeApp from the Firebase package.
-// // Import getFirestore from firebase.
-
-// import { getFirestore } from "firebase/firestore";
-
-// // Call the initializeApp function and pass in your credentials as listed in the env.local file:
-// initializeApp({
-//   apiKey: "AIzaSyDKt4rF-bUpWZk2Wxv1oaTijG0KpHFxUTw",
-//   authDomain: "iblogger-1a5c4.firebaseapp.com",
-//   projectId: "iblogger-1a5c4",
-//   storageBucket: "iblogger-1a5c4.appspot.com",
-//   messagingSenderId: "521434587365",
-//   appId: "1:521434587365:web:87756524071740a092f40c",
-//   measurementId: "G-CQDWEKDQ29",
-// });
-
-// // Create a Firestore instance.
-
-// const firestore = getFirestore();
-
-// // Export firestore so that it can be accessible by the files that we will create later in this project.
-// export { firestore };
-
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import "firebase/compat/database";
-import "firebase/compat/firestore";
-import "firebase/compat/auth";
-// console.log(firebase.auth);
 
-const app = firebase.initializeApp({
-  apiKey: "AIzaSyDKt4rF-bUpWZk2Wxv1oaTijG0KpHFxUTw",
-  authDomain: "iblogger-1a5c4.firebaseapp.com",
-  projectId: "iblogger-1a5c4",
-  storageBucket: "iblogger-1a5c4.appspot.com",
-  messagingSenderId: "521434587365",
-  appId: "1:521434587365:web:87756524071740a092f40c",
-  measurementId: "G-CQDWEKDQ29",
-});
+import { firebaseConfig } from "../config/firebaseApp.config";
 
-// const App = initializeApp(firebaseConfig);
-const db = app.firestore();
-const auth = firebase.auth(app);
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// const firebaseConfig = {
+//   apiKey: String(process.env.NEXT_PUBLIC_FIREBASE_PUBLIC_API_KEY),
+//   authDomain: String(process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN),
+//   projectId: String(process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID),
+//   storageBucket: String(process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET),
+//   messagingSenderId: String(process.env.NEXT_PUBLIC_FIREBASE_ESSAGE_SENDER_ID),
+//   appId: String(process.env.NEXT_PUBLIC_FIREBASE_APP_ID),
+//   measurementId: String(process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID),
+// };
 
-export { auth };
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
-export default db;
+export const auth = firebase.auth();
+
+export default { firebase };
