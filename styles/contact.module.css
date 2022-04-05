@@ -1,5 +1,5 @@
 .container {
-  width: 45vw;
+  width: 30vw;
   margin: auto;
   height: 100vh;
 }
@@ -39,4 +39,8 @@
     width: 90vw;
     margin: auto;
   }
+}
+
+.loginbutton {
+  width: 100%;
 }

@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { useAuthState } from "react-firebase-hooks/auth";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { auth, firebase } from "../Firebase/clientApp";
-import { uiConfig } from "../config/firebaseAuthUIConfig";
+import { uiConfig } from "../config/firebaseAuthUI.Config";
 
 //components
 import Error from "../components/Error";

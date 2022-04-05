@@ -1,5 +1,6 @@
+import { Button } from "@material-ui/core";
+import { grey } from "@material-ui/core/colors";
 import React, { useState } from "react";
-import { ColoredLine } from "../components/hr";
 import styles from "../styles/contact.module.css";
 
 const contact = () => {
@@ -53,7 +54,15 @@ const contact = () => {
   return (
     <div className={styles.container}>
       <h1>Contact US</h1>
-      <ColoredLine color="grey" />
+      <hr
+        style={{
+          color: grey,
+          backgroundColor: grey,
+          height: 2,
+          width: 462,
+          marginBottom: 10,
+        }}
+      />
       <form onSubmit={handleSubmit}>
         <div className={styles.mb3}>
           <label htmlFor="name" className={styles.formlabel}>
@@ -106,16 +115,20 @@ const contact = () => {
           </label>
           <textarea
             className={styles.input}
-            placeholder="Leave a comment here"
+            placeholder="Leave a your concern here"
             id="desc"
             name="desc"
             value={desc}
             onChange={handleChange}
           />
         </div>
-        <button type="submit" className={styles.btn}>
-          Submit
-        </button>
+        <Button
+          className={styles.loginbutton}
+          color="secondary"
+          variant="contained"
+        >
+          Contact Us
+        </Button>
       </form>
     </div>
   );
