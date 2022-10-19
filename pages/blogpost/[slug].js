@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import styles from "../../styles/blogpost.module.css";
 import { ColoredLine } from "../../components/hr";
 import * as fs from "fs";
+import Image from "next/image";
+import iphone12pro from "../../assets/iphone12pro.jpg";
 
 //step 1 : Find the file corresponding to the slug
 //step 2: populate them inside the page
@@ -31,19 +32,32 @@ const Slug = (props) => {
   // }, [router.isReady]);
 
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        <h1>{blog && blog.Title}</h1>
-        <ColoredLine color="black" />
-        {/* <div>{blog && blog.content}</div> */}
-
-        {/* to display html in webpage */}
-        {blog && (
-          <div dangerouslySetInnerHTML={createMarkup(blog.content)}></div>
-        )}
-        <hr />
-      </main>
-    </div>
+    <>
+      {/* <div>{blog && blog.content}</div> */}
+      <section className="text-gray-600 body-font min-h-screen">
+        <div className="container mx-auto flex px-5 py-12 items-center justify-center flex-col">
+          <div className="text-center lg:w-2/3 w-full">
+            <Image
+              className="lg:w-2/6 md:w-3/6 m-20 object-cover object-center rounded-2xl"
+              alt="iphone12pro"
+              src={iphone12pro}
+              width={900}
+              height={400}
+            />
+            <h1 className="title-font sm:text-4xl text-3xl m-6 font-medium text-gray-900">
+              {blog && blog.Title}
+            </h1>
+            <hr />
+            {blog && (
+              <div
+                className="mb-8 py-4 leading-relaxed text-md text-gray-500 font-sans p-4"
+                dangerouslySetInnerHTML={createMarkup(blog.content)}
+              ></div>
+            )}
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
 // Method for the Server side Rendereing
@@ -67,15 +81,6 @@ export async function getStaticPaths() {
     return { params: { slug: item.split(".")[0] } };
   });
   return {
-    // paths: [
-    //   // render the data from the given path
-    //   { params: { slug: "newrelease-apple-12-pro" } },
-    //   { params: { slug: "newrelease-apple-13-mini" } },
-    //   { params: { slug: "newrelease-apple-13pro-apline-green" } },
-    //   { params: { slug: "newrelease-apple-SE-2022" } },
-    //   { params: { slug: "newrelease-apple-watch7" } },
-    // ],
-
     paths: allblg,
     fallback: true, // false or 'blocking'
   };

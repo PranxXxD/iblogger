@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "../styles/userlogin.module.css";
 import { ColoredLine } from "../components/hr";
 import Button from "@material-ui/core/Button";
 
@@ -10,43 +9,34 @@ const userlogin = () => {
 
   return (
     <div>
-      <div className={styles.container}>
+      <div className="">
         <h1>Login To View blog</h1>
         <ColoredLine color="grey" />
         <form onSubmit={handleSubmit}>
-          <div className={styles.mb3}>
-            <label htmlFor="exampleInputEmail1" className={styles.formlabel}>
+          <div className="">
+            <label htmlFor="exampleInputEmail1" className="">
               Email address
             </label>
             <input
               type="email"
-              className={styles.input}
+              className=""
               id="email"
               aria-describedby="emailHelp"
               name="email"
               required
             />
           </div>
-          <div className={styles.mb3}>
-            <label htmlFor="phone" className={styles.formlabel}>
+          <div className="">
+            <label htmlFor="phone" className="">
               Password
             </label>
-            <input
-              type="password"
-              className={styles.input}
-              id="password"
-              name="password"
-            />
+            <input type="password" className="" id="password" name="password" />
           </div>
 
           {/* <button type="submit" className={styles.btn}>
             Submit
           </button> */}
-          <Button
-            className={styles.loginbutton}
-            color="secondary"
-            variant="contained"
-          >
+          <Button className="" color="secondary" variant="contained">
             Login
           </Button>
         </form>

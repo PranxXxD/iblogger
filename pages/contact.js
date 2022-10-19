@@ -1,7 +1,6 @@
 import { Button } from "@material-ui/core";
 import { grey } from "@material-ui/core/colors";
 import React, { useState } from "react";
-import styles from "../styles/contact.module.css";
 
 const contact = () => {
   const [name, setName] = useState("");
@@ -52,7 +51,7 @@ const contact = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className="">
       <h1>Contact US</h1>
       <hr
         style={{
@@ -64,13 +63,13 @@ const contact = () => {
         }}
       />
       <form onSubmit={handleSubmit}>
-        <div className={styles.mb3}>
-          <label htmlFor="name" className={styles.formlabel}>
+        <div className="">
+          <label htmlFor="name" className="">
             Name
           </label>
           <input
             type="name"
-            className={styles.input}
+            className=""
             id="name"
             name="name"
             value={name}
@@ -78,13 +77,13 @@ const contact = () => {
           />
           <div id="name" className="form-text"></div>
         </div>
-        <div className={styles.mb3}>
-          <label htmlFor="exampleInputEmail1" className={styles.formlabel}>
+        <div className="">
+          <label htmlFor="exampleInputEmail1" className="">
             Email address
           </label>
           <input
             type="email"
-            className={styles.input}
+            className=""
             id="email"
             aria-describedby="emailHelp"
             name="email"
@@ -92,29 +91,29 @@ const contact = () => {
             onChange={handleChange}
             required
           />
-          <div id="emailHelp" className={styles.formtext}>
+          <div id="emailHelp" className="">
             We'll never share your email with anyone else.
           </div>
         </div>
-        <div className={styles.mb3}>
-          <label htmlFor="phone" className={styles.formlabel}>
+        <div className="">
+          <label htmlFor="phone" className="">
             Phone
           </label>
           <input
             type="phone"
-            className={styles.input}
+            className=""
             id="phone"
             name="phone"
             value={phone}
             onChange={handleChange}
           />
         </div>
-        <div className={styles.mb3}>
-          <label htmlFor="desc" className={styles.formlabel}>
+        <div className="">
+          <label htmlFor="desc" className="">
             Comments
           </label>
           <textarea
-            className={styles.input}
+            className=""
             placeholder="Leave a your concern here"
             id="desc"
             name="desc"
@@ -122,11 +121,7 @@ const contact = () => {
             onChange={handleChange}
           />
         </div>
-        <Button
-          className={styles.loginbutton}
-          color="secondary"
-          variant="contained"
-        >
+        <Button className="" color="secondary" variant="contained">
           Contact Us
         </Button>
       </form>

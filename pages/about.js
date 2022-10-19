@@ -1,11 +1,10 @@
 import React from "react";
-import styles from "../styles/about.module.css";
 import hr, { ColoredLine } from "../components/hr";
 
 const about = () => {
   return (
-    <div className={styles.container}>
-      <h1 className={styles.blogger}>iBlogger</h1>
+    <div className="">
+      <h1 className="">iBlogger</h1>
       <ColoredLine color="grey" />
       <h2>Introduction</h2>
       <ColoredLine color="black" />

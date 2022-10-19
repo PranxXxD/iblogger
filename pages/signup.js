@@ -11,8 +11,6 @@ import { uiConfig } from "../config/firebaseAuthUI.Config";
 import Error from "../components/Error";
 import Loading from "../components/Loading";
 import Card from "../components/Card";
-
-import styles from "../styles/signup.module.css";
 import { grey } from "@material-ui/core/colors";
 
 const signup = () => {
@@ -26,11 +24,11 @@ const signup = () => {
     router.push("/");
   }
 
-  const authConfig = uiConfig(firebase);
+  // const authConfig = uiConfig(firebase);
 
   return (
     <div>
-      <div className={styles.container}>
+      <div className="">
         <Card>
           <h1>Sign In</h1>
           <hr
@@ -42,7 +40,7 @@ const signup = () => {
               marginBottom: 10,
             }}
           />
-          <StyledFirebaseAuth uiConfig={authConfig} firebaseAuth={auth} />
+          {/* <StyledFirebaseAuth uiConfig={authConfig} firebaseAuth={auth} /> */}
         </Card>
       </div>
     </div>
