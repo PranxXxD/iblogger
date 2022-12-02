@@ -1,0 +1,30 @@
+<main className="">
+  <div className="">
+    <h2>Mostly Viewed Blogs</h2>
+    <ColoredLine color="black" />
+  </div>
+  <InfiniteScroll
+    dataLength={blogs.length} //This is important field to render the next data
+    next={fetchData}
+    hasMore={props.allCount !== blogs.length}
+    loader={<h4>Loading...</h4>}
+    endMessage={
+      <p style={{ textAlign: "center" }}>
+        <b>Yay! You have seen it all</b>
+      </p>
+    }
+  >
+    {blogs.map((blogitem) => {
+      return (
+        <div className="" key={blogitem.slug}>
+          <div className="">
+            <Link href={`/blogpost/${blogitem.slug}`}>
+              <h3>{blogitem.Title} &rarr;</h3>
+            </Link>
+            <p>{blogitem.metadesc.substr(0, 130)}.....</p>
+          </div>
+        </div>
+      );
+    })}
+  </InfiniteScroll>
+</main>;

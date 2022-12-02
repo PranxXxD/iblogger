@@ -1,28 +1,22 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import * as fs from "fs";
+import Blogs from "../../models/Blogs";
+import connectDb from "../../middleware/mongoose";
 
-export default async function handler(req, res) {
-  // console.log(req.query.count);
-  let data = await fs.promises.readdir("blogdata");
-  data = data.slice(0, parseInt(req.query.count));
-  let myfile;
-  let allblogs = [];
-
-  // fetch the data from the dir and storing in the item
-  for (let index = 0; index < data.length; index++) {
-    const item = data[index];
-
-    // read  data from the file
-    myfile = await fs.promises.readFile("blogdata/" + item, "utf-8");
-    // console.log(myfile);
-
-    //pushing data of myfile in allblogs
-    allblogs.push(JSON.parse(myfile));
+const handler = async (req, res) => {
+  if (req.method == "POST") {
+    for (let i = 0; i < req.body.length; i++) {
+      let userblogs = new Blogs({
+        title: req.body[i].title,
+        desc: req.body[i].desc,
+        slug: req.body[i].slug,
+      });
+      await userblogs.save();
+      console.log(userblogs);
+    }
+    res.status(200).json({ success: "Success" });
+  } else {
+    res.status(400).json({ error: "This is bad request" });
   }
-  // fs.readdir("blogdata", (err, data) => {
-  //   if (err) {
-  //     res.status(500).json({ error: "Internal Server Error" });
-  //   }
-  //   console.log(data);
-  res.status(200).json(allblogs);
-}
+};
+
+export default connectDb(handler);
