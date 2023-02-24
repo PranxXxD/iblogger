@@ -23,7 +23,9 @@ const handler = async (req, res) => {
       blogs[item.title] = JSON.parse(JSON.stringify(item));
       blogs[item.category] = JSON.parse(JSON.stringify(item));
     }
-    // console.log(req.query.slug);
-    res.status(200).json(JSON.parse(data));
-  });
-}
+  }
+  res.status(200).json({ blogs });
+};
+
+export default connectDb(handler);
+
