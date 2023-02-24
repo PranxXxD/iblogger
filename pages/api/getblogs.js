@@ -1,13 +1,27 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 //localhost:3000/api/getblogs?slug=newRelase-apple-watch7
 
-import * as fs from "fs";
+// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-export default function handler(req, res) {
-  // console.log(req);
-  fs.readFile(`blogdata/${req.query.slug}.json`, "utf-8", (err, data) => {
-    if (err) {
-      res.status(500).json({ error: "Blogpost Not Found" });
+import Blogs from "../../models/Blogs";
+import connectDb from "../../middleware/mongoose";
+
+const handler = async (req, res) => {
+  let getBlogs = await Blogs.find();
+  let blogs = {};
+  // looping through the getblogs array
+  for (let item of getBlogs) {
+    if (item.title in blogs) {
+      if (
+        !blogs[item.title].category.includes(item.category)
+      ) {
+        blogs[item.title].category.push(item.category);
+      }
+    }
+    // display the blog if the title and category is available
+    else {
+      blogs[item.title] = JSON.parse(JSON.stringify(item));
+      blogs[item.category] = JSON.parse(JSON.stringify(item));
     }
     // console.log(req.query.slug);
     res.status(200).json(JSON.parse(data));
