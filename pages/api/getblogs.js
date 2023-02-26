@@ -10,17 +10,17 @@ const handler = async (req, res) => {
   let blogs = {};
   // looping through the getblogs array
   for (let item of CodingBlogs) {
-    if (item.category in blogs) {
+    if (item.title in blogs) {
       if (
-        !blogs[item.category].title.includes[item.title]
+        !blogs[item.title].category.includes(item.category)
       ) {
-        blogs[item.category].push(item.title);
+        blogs[item.title].category.push(item.category);
       }
     }
     // display the blog if the title and category is available
     else {
-      blogs[item.category] = JSON.parse(JSON.stringify(item));  
-      //  blogs[item.category].title = [item.title];
+      blogs[item.title] = JSON.parse(JSON.stringify(item));  
+      //  blogs[item.title].category = [item.title];
   }
  }
 
