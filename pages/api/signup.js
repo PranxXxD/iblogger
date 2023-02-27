@@ -10,7 +10,7 @@ const handler = async (req, res) => {
     // destructuring object
     const { name, email } = req.body;
     // encrypting the password
-    let users = new User({
+    let user = new User({
       name,
       email,
       password: CryptoJS.AES.encrypt(
@@ -18,7 +18,7 @@ const handler = async (req, res) => {
         process.env.AES_SECRET_KEY
       ).toString(),
     });
-    await users.save();
+    await user.save();
     res.status(200).json({ success: "Success" });
   } else {
     res.status(400).json({ error: "This is bad request" });
