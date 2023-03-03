@@ -1,67 +1,33 @@
-import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState } from "react";
 import Link from "next/Link";
-import { ColoredLine } from "../components/hr";
-import * as fs from "fs";
-import InfiniteScroll from "react-infinite-scroll-component";
-
+// import { ColoredLine } from "../components/hr";
+// import InfiniteScroll from "react-infinite-scroll-component";
+import Blogs from "../models/Blogs";
+import mongoose from "mongoose";
 //step 1: collect all files from the blogdata directory
 //step 2 : Iterate through them and display them
 
-const Blog = (props) => {
-  const [blogs, setBlogs] = useState(props.allblogs);
-  // console.log(props);
-  // useEffect(() => {
-  //   // console.log("UseEffect is running");
-  //   // fetching the data and parsing into a json format
-  //   fetch("http://localhost:3000/api/blogs")
-  //     .then((a) => {
-  //       return a.json();
-  //     })
-  //     .then((parsed) => {
-  //       setBlogs(parsed);
-  //     });
-  // }, []);
-  const [count, setCount] = useState(2);
-
-  const fetchData = async () => {
-    // a fake async api call like which sends
-    // 20 more records in 1.5 secs
-    let Data = await fetch(
-      `http://localhost:3001/api/blogs/?count=${count + 2}`
-    );
-    setCount(count + 2);
-    let data = await Data.json();
-    setBlogs(data);
-  };
+const Blog = ({JSblogs}) => {
+  console.log(JSblogs);
+ 
   return (
     <>
-      <InfiniteScroll
-        dataLength={blogs.length} //This is important field to render the next data
-        next={fetchData}
-        hasMore={props.allCount !== blogs.length}
-        loader={<h4>Loading...</h4>}
-        endMessage={
-          <p style={{ textAlign: "center" }}>
-            <b>Yay! You have seen it all</b>
-          </p>
-        }
-      >
-        <section className="text-gray-600 body-font overflow-hidden min-h-screen ">
+      <section className="text-gray-600 body-font overflow-hidden min-h-screen ">
           <div className="flex flex-col container px-5 py-8 mx-auto">
-            <div className="sm:flex sm:w-1/2 items-stretch justify-center m-auto sm:flex-col cursor-pointer ">
-              {blogs.map((blogitem) => {
+            <div className="sm:flex sm:w-1/3 items-stretch justify-center m-auto sm:flex-col cursor-pointer">
+              {Object.keys(JSblogs).map((item) => {
                 return (
                   <div
-                    className="flex-grow sm:text-left text-center rounded-2xl px-4 mt-2 sm:mt-0 hover:bg-slate-100 shadow-md transition hover:ease-in-out"
-                    key={blogitem.slug}
+                    className="flex-grow sm:text-left text-center rounded-2xl px-4 mt-2 sm:mt-0 hover:bg-slate-200 shadow-md transition hover:ease-in"
+                    key={JSblogs[item].slug}
                   >
-                    <Link href={`/blogpost/${blogitem.slug}`}>
+                    <Link href={`/blogs/${JSblogs[item].slug}`}>
                       <h3 className="md:text-2xl text-xl md:mt-6 py-4 font-medium text-gray-900 title-font">
-                        {blogitem.Title}
+                        {JSblogs[item].title}
                       </h3>
                     </Link>
                     <p className="leading-relaxed text-base w-auto">
-                      {blogitem.metadesc.substr(0, 130)}
+                      {JSblogs[item].desc.substr(0, 130)}
                     </p>
                     <a className="m-2 text-indigo-500 inline-flex items-center">
                       Learn More
@@ -83,41 +49,41 @@ const Blog = (props) => {
             </div>
           </div>
         </section>
-      </InfiniteScroll>
     </>
   );
 };
 // Method for the Server side Rendereing
-// export async function getServerSideProps(context) {
-//   // console.log(context);
-//   let data = await fetch("http://localhost:3000/api/blogs");
-//   let allblogs = await data.json(); //convert the data into a json format
-//   return {
-//     props: { allblogs }, // will be passed to the page component as props
-//   };
-// }
-
-// Method for the static side rendering
-export async function getStaticProps(context) {
-  let data = await fs.promises.readdir("blogdata");
-  let allCount = data.length;
-  let myfile;
-  let allblogs = [];
-
-  // fetch the data from the dir and storing in the item
-  for (let index = 0; index < 2; index++) {
-    const item = data[index];
-
-    // read  data from the file
-    myfile = await fs.promises.readFile("blogdata/" + item, "utf-8");
-    // console.log(myfile);
-
-    //pushing data of myfile in allblogs
-    allblogs.push(JSON.parse(myfile));
+// fetching the data from the mongodb
+export async function getServerSideProps(context) {
+  if (!mongoose.connections[0].readyState) {
+    await mongoose.connect(process.env.MONGO_URI);
+  }
+  let JSblogs = await Blogs.find();
+  // console.log(products);
+  // jsBlg is an object
+  let jsBlg = {};
+  // looping through the product array
+  for (let item of JSblogs) {
+    // taking title as a key and jsBlg as an object
+    if (item.title in jsBlg) {
+      if (!jsBlg[item.title].category.includes(item.category)) {
+        jsBlg[item.title].category.push(item.category);
+      }
+    }
+    // display the blog if the category is available
+    else {
+       jsBlg[item.title] = JSON.parse(JSON.stringify(item));
+      if (item.title) {
+        jsBlg[item.title].category = [item.category];
+      }
+    }
   }
   return {
-    props: { allblogs, allCount }, // will be passed to the page component as props
+    props: {
+      JSblogs: JSON.parse(JSON.stringify(jsBlg)),
+    }, // will be passed to the page component as props
   };
 }
+
 
 export default Blog;
