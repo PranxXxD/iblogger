@@ -8,7 +8,7 @@ import mongoose from "mongoose";
 //step 2 : Iterate through them and display them
 
 const Blog = ({JSblogs}) => {
-  console.log(JSblogs);
+  // console.log(JSblogs);
  
   return (
     <>
@@ -17,9 +17,10 @@ const Blog = ({JSblogs}) => {
             <div className="sm:flex sm:w-1/3 items-stretch justify-center m-auto sm:flex-col cursor-pointer">
               {Object.keys(JSblogs).map((item) => {
                 return (
+                  <Link key={item._id} href={`/blogs/${JSblogs[item].slug}`}>
                   <div
                     className="flex-grow sm:text-left text-center rounded-2xl px-4 mt-2 sm:mt-0 hover:bg-slate-200 shadow-md transition hover:ease-in"
-                    key={JSblogs[item].slug}
+                    // key={JSblogs[item].slug}
                   >
                     <Link href={`/blogs/${JSblogs[item].slug}`}>
                       <h3 className="md:text-2xl text-xl md:mt-6 py-4 font-medium text-gray-900 title-font">
@@ -44,6 +45,7 @@ const Blog = ({JSblogs}) => {
                       </svg>
                     </a>
                   </div>
+                  </Link>
                 );
               })}
             </div>
