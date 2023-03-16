@@ -6,7 +6,8 @@ import Image from "next/image";
 import Blogs from "../../models/Blogs";
 import mongoose from "mongoose";
 import { ContentCopyOutlined, CopyAllOutlined } from "@mui/icons-material";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 //step 1 : Find the file corresponding to the slug
@@ -18,7 +19,7 @@ const Slug = ({ allblogs }) => {
 
   // const [blog, setBlog] = useState(props.myBlog);
 
-  const copyCard = async () => {
+  const copyCard = () => {
     let card = document.querySelector(".card");
     let range = document.createRange();
     range.selectNode(card);
@@ -27,18 +28,19 @@ const Slug = ({ allblogs }) => {
     document.execCommand("copy");
     window.getSelection().removeAllRanges();
     // alert("Card copied to clipboard!");
-    toast.success("Card copied to clipboard", {
+    toast.success("Card copied to clipboard!!",{
       position: "top-center",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: 1,
-      theme: "light",
-      type: "success"
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        type: "success",
     });
   }
+
+
 
   // //display the markup code in text fromat
   // function createMarkup(c) {
@@ -62,7 +64,17 @@ const Slug = ({ allblogs }) => {
   return (
     <>
       {/* <div>{blog && blog.content}</div> */}
-      <ToastContainer/>
+      <ToastContainer
+        position="top-center"
+          autoClose={4000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+      />
       <section className="text-gray-600 body-font min-h-screen">
         <div className="container mx-auto flex px-5 py-12 items-center justify-center flex-col">
           <div className="text-center lg:w-2/3 w-full">
@@ -77,6 +89,7 @@ const Slug = ({ allblogs }) => {
               {allblogs.title}
             </h1>
             <hr />
+            {/* <button onClick={()=>{notify()}}>click me</button> */}
             <div
               className="text-left w-full mb-8 py-4 leading-relaxed text-md font-semibold text-gray-900 font-sans p-2"
             // dangerouslySetInnerHTML={createMarkup(allblogs.desc)}
