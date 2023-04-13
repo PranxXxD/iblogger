@@ -7,9 +7,10 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { stringify } from "postcss";
 import mongoose from "mongoose";
 import Blogs from "../models/Blogs"
+import Link from "next/Link";
 
-const Home = ({JsBlog,PyBlog})=> {
-  console.log(JsBlog,PyBlog)
+const Home = ({ BlogRes }) => {
+  // console.log(JsBlog,PyBlog)
 
   return (
     <div className="">
@@ -35,93 +36,96 @@ const Home = ({JsBlog,PyBlog})=> {
             <div id="blog" className="px-4 xl:px-0 py-0">
               <div className="mx-auto container">
                 <div className="mt-12 lg:mt-24">
-                  <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-8">
-                    {Object.keys(JsBlog).map((item)=>
-                    {
-                      return(
-                      <div>
-                      <Image
-                        className="w-full rounded-t-2xl"
-                        src={Banner1}
-                        alt="JavaScript"
-                      />
-                      <div className="py-4 px-8 w-full flex justify-between bg-violet-700">
-                        <p className="text-sm text-white font-semibold tracking-wide">
-                          {JsBlog[item].category}
-                        </p>
-                        <p className="text-sm text-white font-semibold tracking-wide">
-                        {JsBlog[item].createdAt}
-                        
-                        </p>
-                      </div>
-                      <div className="bg-white px-10 py-6 rounded-bl-3xl rounded-br-3xl">
-                        <h1 className="text-4xl text-gray-900 font-semibold tracking-wider">
-                          {JsBlog[item].title}
-                        </h1>
-                        <p className="text-gray-700 text-sm lg:text-sm  lg:leading-8 tracking-wide mt-6 w-11/12">
-                          {JsBlog[item].desc}
-                        </p>
-                        <div className="w-full mt-4 justify-end flex items-center cursor-pointer">
-                          <p className="text-base tracking-wide text-indigo-500">
-                            Read more
-                          </p>
-                          <svg
-                            className="ml-3 lg:ml-6"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width={20}
-                            height={18}
-                            viewBox="0 0 20 18"
-                            fill="none"
-                          >
-                            <path
-                              d="M11.7998 1L18.9998 8.53662L11.7998 16.0732"
-                              stroke="#4338ca"
-                              strokeWidth={2}
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                            <path
-                              d="M1 8.53662H19"
-                              stroke="#4338ca"
-                              strokeWidth={2}
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                          </svg>
-                        </div>
-                        <div className="h-5 w-2" />
-                      </div>
-                    </div>
-                    )})}
-                    <div>
-                    {/* card 1st row */}
-                    <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8">
-                    {Object.keys(PyBlog).map((item)=>{
-                    return ( <div>
+                  <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    {Object.keys(BlogRes).map((item, key) => {
+                      return (
+                        <div key={key}>
                           <Image
                             className="w-full rounded-t-2xl"
-                            src={webdevelopment}
-                            alt="games"
+                            src={Banner1}
+                            alt="JavaScript"
                           />
-                          <div className="py-2 px-4 w-full flex justify-between bg-indigo-700">
-                            <p className="text-sm text-white font-semibold tracking-wide">
-                              {PyBlog[item].title}
+                          <div className="py-2 px-4 w-full flex justify-between bg-violet-700">
+                            <p className="text-sm text-white font-sans tracking-wide">
+                              {BlogRes[item].category}
                             </p>
-                            <p className="text-sm text-white font-semibold tracking-wide">
-                              {PyBlog[item].createdAt}
+                            <p className="text-sm text-white font-sans tracking-wide">
+                              {BlogRes[item].createdAt}
+
                             </p>
                           </div>
-                          <div className="bg-white px-3  lg:px-6 py-4 rounded-bl-3xl rounded-br-3xl">
-                            <h1 className="text-lg text-gray-900 font-semibold tracking-wider">
-                              {PyBlog[item].title}
+                          <div className="bg-white px-10 py-6 rounded-bl-xl rounded-br-xl">
+                            <h1 className="text-xl text-gray-900 font-semibold tracking-wider">
+                              {BlogRes[item].title}
                             </h1>
-                            <p className="text-gray-700 text-sm  lg:text-sm  lg:leading-8 pr-4 tracking-wide mt-2">
-                              {PyBlog[item].desc}
+                            <p className="text-gray-700 text-sm lg:text-sm  lg:leading-8 tracking-wide mt-6 w-11/12">
+                              {BlogRes[item].desc.substr(0, 50)}
                             </p>
+                            <div className="w-full mt-4 justify-end flex items-center cursor-pointer">
+                              <Link href={"/blog"}><p className="text-base tracking-wide text-indigo-500">
+                                Read more
+                              </p></Link>
+                              <svg
+                                className="ml-3 lg:ml-6"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width={20}
+                                height={18}
+                                viewBox="0 0 20 18"
+                                fill="none"
+                              >
+                                <path
+                                  d="M11.7998 1L18.9998 8.53662L11.7998 16.0732"
+                                  stroke="#4338ca"
+                                  strokeWidth={2}
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                                <path
+                                  d="M1 8.53662H19"
+                                  stroke="#4338ca"
+                                  strokeWidth={2}
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
+                            </div>
+                            <div className="h-5 w-2" />
                           </div>
                         </div>
-                      )})}
-                      </div> 
+                      )
+                    })}
+                    <div>
+                  </div>
+                    {/* card 1st row */}
+                    <div className="mx-auto container">
+                      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8">
+                        {Object.keys(BlogRes).map((item, key) => {
+                          return (<div className="w-auto" key={key}>
+                            <Image
+                              className="w-full rounded-t-2xl"
+                              src={webdevelopment}
+                              alt="games"
+                            />
+                            <div className="py-2 px-4 w-full flex justify-between bg-indigo-700">
+                              <p className="text-sm text-white font-sans tracking-wide">
+                                {BlogRes[item].title}
+                              </p>
+                              <p className="text-sm text-white font-sans tracking-wide">
+                                {BlogRes[item].createdAt}
+                              </p>
+                            </div>
+                            <div className="bg-white px-3  lg:px-6 py-4 rounded-bl-xl rounded-br-xl">
+                              <h1 className="text-lg text-gray-900 font-sans tracking-wider">
+                                {BlogRes[item].title}
+                              </h1>
+                              <p className="text-gray-700 text-sm  lg:text-sm  lg:leading-8 pr-4 tracking-wide mt-2">
+                                {BlogRes[item].desc.substr(0, 50)}
+                              </p>
+                            </div>
+                          </div>
+                          )
+                        })}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -184,27 +188,21 @@ const Home = ({JsBlog,PyBlog})=> {
 
 // Fetching the blogs from server
 
-export async function getServerSideProps(context){
+export async function getServerSideProps(context) {
   if (!mongoose.connections[0].readyState) {
     await mongoose.connect(process.env.MONGO_URI);
   }
-   await Blogs.find();
-  const [JsBlogRes, PyBlogRes] = await Promise.all([
-    fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getjsblog`), 
-    fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getblogs`)
-  ]);
-  const [JsBlog, PyBlog] = await Promise.all([
-    JsBlogRes.json(), 
-    PyBlogRes.json()
+  const BlogRes = await Blogs.find();
+
+  const [blogs] = await Promise.all([
+    BlogRes
   ]);
   return {
     props: {
-      JsBlog ,
-      PyBlog 
+      BlogRes: JSON.parse(JSON.stringify(blogs)),
     }, // will be passed to the page component as props
   };
   // JsBlog: JSON.parse(JSON.stringify(JsBlog)),
 }
 
 export default Home;
-
