@@ -4,6 +4,7 @@ import Link from "next/Link";
 // import InfiniteScroll from "react-infinite-scroll-component";
 import Blogs from "../models/Blogs";
 import mongoose from "mongoose";
+import { TbArrowMoveRight } from "react-icons/tb";
 //step 1: collect all files from the blogdata directory
 //step 2 : Iterate through them and display them
 
@@ -12,9 +13,9 @@ const Blog = ({allblogs}) => {
  
   return (
     <>
-      <section className="text-gray-600 body-font overflow-hidden min-h-screen ">
-          <div className="flex flex-col container px-5 py-8 mx-auto">
-            <div className="sm:flex sm:w-1/3 items-stretch justify-center m-auto sm:flex-col cursor-pointer">
+      <section className="text-gray-600 body-font overflow-hidden min-h-screen">
+          <div className="flex flex-col container px-5 py-8 mx-auto mt-6">
+            <div className="sm:flex sm:w-1/2 items-stretch justify-center m-auto sm:flex-col cursor-pointer">
               {Object.keys(allblogs).map((item) => {
                 return (
                   <Link key={item._id} href={`/blogpost/${allblogs[item].slug}`}>
@@ -30,17 +31,7 @@ const Blog = ({allblogs}) => {
                     </p>
                     <a className="m-2 text-indigo-500 inline-flex items-center">
                       Learn More
-                      <svg
-                        fill="none"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        className="w-4 h-4 ml-2"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M5 12h14M12 5l7 7-7 7"></path>
-                      </svg>
+                      <TbArrowMoveRight className="w-10 text-2xl"/>
                     </a>
                   </div>
                   </Link>

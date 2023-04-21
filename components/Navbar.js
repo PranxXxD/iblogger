@@ -10,9 +10,9 @@ const Navbar = () => {
   return (
     <>
       <header className="text-gray-600 body-font">
-        <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-          <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-          
+        <div className="fixed container mx-auto bg-slate-300 flex p-5 flex-col md:flex-row items-center">
+          <h4 className="ml-8 font-bold text-2xl text-sky-700">CodesBlog</h4>
+          <nav className="md:ml-auto md:mr-auto flex flex-wrap text-base ">
             <Link href={"/"}>
               <li className="mr-5 cursor-pointer hover:text-gray-400">Home</li>
             </Link>
@@ -26,39 +26,44 @@ const Navbar = () => {
                 Contact
               </li>
             </Link>
-           {dropDown && (
-           <div
-              onMouseOver={() => {
-                setDropDown(true);
-              }}
-              onMouseLeave={() => {
-                setDropDown(false);
-              }}
-             className="fixed bg-white shadow-lg border-2 top-9 py-4 rounded-md px-6 w-46 z-30"
-           >
-             <ul className="flex-col justify-center items-center">
-               <Link href={"/myaccount"}>
-                 <a>
-                   <li className="flex py-2 hover:text-violet-400 text-black text-md items-center font-medium">
-                     <AccountCircleRoundedIcon className="mx-1" />
-                     My Account
-                   </li>
-                 </a>
-               </Link>
-               <Link href={"/login"}>
-                 <li
-                   onClick=""
-                   className="flex py-2 hover:text-violet-400 text-black text-md items-center font-medium"
-                 >
-                   Logout
-                 </li>
-               </Link>
-             </ul>
-           </div>
-         )}
-         <AccountCircleRoundedIcon className="mx-1" />
+
+
+            {dropDown && (
+              <div
+                onMouseOver={() => {
+                  setDropDown(true);
+                }}
+                onMouseLeave={() => {
+                  setDropDown(false);
+                }}
+                className="fixed bg-white shadow-lg border-2 top-9 py-4 rounded-md px-6 w-46 z-30"
+              >
+                <ul className="flex-col justify-center items-center">
+                  <Link href={"/myaccount"}>
+                    
+                      <li className="flex py-2 hover:text-violet-400 text-black text-md items-center font-medium">
+                        <AccountCircleRoundedIcon className="mx-1" />
+                        My Account
+                      </li>
+                  </Link>
+                  <Link href={"/login"}>
+                    <li
+                      onClick=""
+                      className="flex py-2 hover:text-violet-400 text-black text-md items-center font-medium"
+                    >
+                      Logout
+                    </li>
+                  </Link>
+                </ul>
+              </div>
+
+            )}
+
+            <AccountCircleRoundedIcon className="mx-1" />
+
           </nav>
         </div>
+
       </header>
     </>
   );
