@@ -8,9 +8,12 @@ const handler = async (req, res) => {
     for (let i = 0; i < req.body.length; i++) {
       let b = new Blogs({
         title: req.body[i].title,
+        href: req.body[i].href,
         category: req.body[i].category,
         slug: req.body[i].slug,
         desc: req.body[i].desc,
+        date:  req.body[i].date,
+        author:  req.body[i].author,
       });
       await b.save();
     }
