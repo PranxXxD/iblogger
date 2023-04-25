@@ -4,17 +4,19 @@ const BlogSchema = new mongoose.Schema(
   {
     title: { type: String },
     href: { type: String },
-    category: [{ title: String, href: String}],
-    slug: [{ type: String, unique:true}],
+    category: [{ title: { String }, href: { String } }],
+    slug: { type: String, unique: true},
     desc: { type: String },
-    date: { type: String }, 
-    author: [{   name: String,
-    role: String,
-    href: String,
-    imageUrl: String }
-  ],
+    date: { type: String },
+    author: [{
+      name: { String },
+      role: { String },
+      href: { String },
+      imageUrl: { String },
+    }
+    ]
   },
-  {timestamps:true, typeKey: '$type' }
+  { timestamps: true, typeKey: '$type' }
 );
 
 // mongoose.models = {};

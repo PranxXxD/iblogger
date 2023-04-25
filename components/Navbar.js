@@ -10,8 +10,8 @@ const Navbar = () => {
   return (
     <>
       <header className="text-gray-600 body-font">
-        <div className="fixed container mx-auto bg-slate-300 flex p-5 flex-col md:flex-row items-center">
-          <h4 className="ml-8 font-bold text-2xl text-sky-700">CodesBlog</h4>
+        <div className="fixed container mx-auto bg-slate-200 flex p-5 flex-col md:flex-row items-center">
+          <h4 className="ml-8 font-bold text-2xl text-sky-700">&lt;CodesBlog/&gt;</h4>
           <nav className="md:ml-auto md:mr-auto flex flex-wrap text-base ">
             <Link href={"/"}>
               <li className="mr-5 cursor-pointer hover:text-gray-400">Home</li>

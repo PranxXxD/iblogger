@@ -26,7 +26,7 @@ const Home = ({ BlogRes }) => {
       <main className="m-auto">
         <section className="text-gray-600 body-font">
           <div className="container px-5 py-3 mx-auto w-auto">
-            <div className="text-center">
+            <div className="text-center mt-20">
               <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4">
                 &lt;CodesBlog/&gt;
               </h1>
